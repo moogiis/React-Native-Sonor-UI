@@ -46,19 +46,22 @@ class MainPage extends Component {
 const AppTabNavigator  = TabNavigator(
   {
     Page1: { screen: Page1 },
-    Page3: { screen: Page3 },
     Page2: { screen: Page2 },
+    Page3: { screen: Page3 },
   },
   {
     tabBarComponent: NavigationComponent,
     tabBarPosition: 'bottom',
+    backBehavior: 'none',
+    animationEnabled: true,
+    swipeEnabled: false,
     tabBarOptions: {
-
+      showLabel: false,
+      showIcon: true,
       bottomNavigationOptions: {
         labelColor: '#757575',
         rippleColor: '#000000',
         activeLabelColor: '#ea494e',
-
         tabs: {
           Page1: {
             barBackgroundColor: '#ffffff',
@@ -72,6 +75,15 @@ const AppTabNavigator  = TabNavigator(
           },
         }
       }
+    }
+  },
+
+  {
+
+    backBehavior: 'none',
+    tabBarOptions: {
+      showLabel: false,
+      showIcon: true,
     }
   }
 )

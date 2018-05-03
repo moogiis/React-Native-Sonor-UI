@@ -9,11 +9,15 @@ import {
   ImageBackground,
   FlatList,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
+  Dimensions,
+  Platform,
+  Alert
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import Carousel from 'react-native-snap-carousel';
 
 const data = [
   {
@@ -63,11 +67,95 @@ export default class Page1 extends Component {
 
 }
 
-constructor(props) {
-  super(props);
+/*constructor(props) {
+super(props);
+this.state = {
+data: data
+};
+this.props = props;
+this._carousel = {};
+this.init();
+}*/
+
+constructor(props){
+  super();
   this.state = {
-    data: data
+    errors: [],
+  }
+  this.props = props;
+  this._carousel = {};
+  this.init();
+}
+
+init(){
+  this.state = {
+    videos: [
+      {
+        id: "WpIAc9by5iU",
+        "1": require('../../assets/feed_images/z1.jpg'),
+        title: "Kendrick Lamar"
+      }, {
+        id: "sNPnbI1arSE",
+        "2": require('../../assets/feed_images/z1.jpg'),
+        title: "Kendrick Lamar"
+      }, {
+        id: "VOgFZfRVaww",
+        "3": require('../../assets/feed_images/z1.jpg'),
+        title: "Kendrick Lamar"
+      }, {
+        id: "VOgFZfRVaww",
+        "4": require('../../assets/feed_images/z1.jpg'),
+        title: "Kendrick Lamar"
+      }, {
+        id: "VOgFZfRVaww",
+        "5": require('../../assets/feed_images/z1.jpg'),
+        title: "Kendrick Lamar"
+      }
+
+    ]
   };
+
+  console.log("ThumbnailCarousel Props: ", this.props)
+}
+
+handleSnapToItem(index){
+  console.log("snapped to ", index)
+}
+
+_renderItem = ( {item, index} ) => {
+  console.log("rendering,", index, item)
+  return (
+
+    <TouchableHighlight onPress={() => this.props.navigation.navigate('TodayArtist')} underlayColor="white">
+
+      <ImageBackground
+        borderRadius={10}
+        style={{height: 150, width: 320, justifyContent: 'flex-end', marginBottom: 18}}
+        source={require('../../assets/feed_images/lamar.jpeg')}
+
+        resizeMode="cover"
+        >
+        <View style={{ alignItems: 'center', flexDirection: 'row', padding: 15}}>
+
+          <Text style={{fontSize: 18, color: 'black', fontWeight: 'bold'}}>{item.title}</Text>
+
+          <View style={{marginLeft: 'auto', paddingLeft: 10}}>
+
+            <View style={{backgroundColor: '#ea494e',  paddingTop: 5, paddingBottom: 5, paddingLeft: 8, paddingRight: 8, borderRadius: 15}}>
+
+              <Text style={{fontSize: 13, color: 'white'}}>50 Дуу</Text>
+
+            </View>
+
+          </View>
+
+        </View>
+
+      </ImageBackground>
+
+    </TouchableHighlight>
+
+  );
 }
 
 
@@ -75,34 +163,21 @@ render() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <View style={{backgroundColor: 'white', padding: 18, marginTop: 10}} >
 
-          <Text style={{fontSize: 15, color: 'black', fontWeight: 'bold', marginBottom: 15}}>Шилдэг уран бүтээлч</Text>
-          <TouchableHighlight onPress={() => this.props.navigation.navigate('TodayArtist')} underlayColor="white">
-            <ImageBackground
-              style={{height: 150, width: undefined, justifyContent: 'flex-end'}}
-              source={require('../../assets/feed_images/lamar.jpeg')}
-              resizeMode="cover"
-              >
+        <View style={{backgroundColor: 'white', marginTop: 10}} >
 
-              <View style={{
-                  alignItems: 'center',
-                  flexDirection: 'row',
-                  padding: 15
-                }}>
+          <Text style={{fontSize: 15, color: 'black', fontWeight: 'bold', marginLeft: 18, marginRight: 18,  marginBottom: 15, marginTop: 18}}>Шилдэг уран бүтээлч</Text>
 
-                <Text style={{fontSize: 18, color: 'black', fontWeight: 'bold'}}>Kendrick Lamar</Text>
-
-                <View style={{backgroundColor: '#ea494e', marginLeft: 'auto', paddingTop: 5, paddingBottom: 5, paddingLeft: 8, paddingRight: 8, borderRadius: 15}}>
-
-                  <Text style={{fontSize: 13, color: 'white'}}>50 Дуу</Text>
-
-                </View>
-
-              </View>
-
-            </ImageBackground>
-          </TouchableHighlight>
+          <Carousel
+            ref={ (c) => { this._carousel = c; } }
+            data={this.state.videos}
+            renderItem={this._renderItem.bind(this)}
+            onSnapToItem={this.handleSnapToItem.bind(this)}
+            sliderWidth={sliderWidth}
+            itemWidth={320}
+            layout={'default'}
+            firstItem={1}
+            />
 
         </View>
 
@@ -115,26 +190,52 @@ render() {
           <FlatList
             showsHorizontalScrollIndicator={false}
             horizontal
-            data={this.state.data}
-            renderItem={({ item: rowData }) => {
+            data={[
+              {key: 'Dari Ya Alby Dari Ya Alby', "1": require('../../assets/feed_images/z1.jpg'),},
+              {key: 'Dari Ya Alby Dari Ya Alby', "2": require('../../assets/feed_images/z1.jpg'),},
+              {key: 'Dari Ya Alby Dari Ya Alby', "3": require('../../assets/feed_images/z1.jpg'),},
+              {key: 'Dari Ya Alby Dari Ya Alby', "4": require('../../assets/feed_images/z1.jpg'),},
+              {key: 'Dari Ya Alby Dari Ya Alby', "5": require('../../assets/feed_images/z1.jpg'),},
+              {key: 'Dari Ya Alby Dari Ya Alby', "6": require('../../assets/feed_images/z1.jpg'),},
+              {key: 'Dari Ya Alby Dari Ya Alby', "7": require('../../assets/feed_images/z1.jpg'),},
+              {key: 'Dari Ya Alby Dari Ya Alby', "8": require('../../assets/feed_images/z1.jpg'),},
+              {key: 'Dari Ya Alby Dari Ya Alby', "9": require('../../assets/feed_images/z1.jpg'),},
+            ]}
+            renderItem={({ item ,index}) => {
               return (
                 <View
                   style={{ padding: 0, width: 140, marginLeft: 18, marginRight: 8,  marginBottom: 18}}
                   >
+                  <TouchableHighlight underlayColor="#eeeeee"  onPress={() => Alert.alert(
+                      'Alert Title',
+                      'alertMessage',
+                      [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+                        {text: 'OK', onPress: this.onDeleteBTN},
+                      ],
+                      { cancelable: false }
+                    )}>
 
-                  <Image
-                    style={{height: 140, width: undefined}}
-                    source={require('../../assets/feed_images/z1.jpg')}
-                    resizeMode="cover"
-                    />
+                    <View>
 
-                  <Text style={{ marginTop: 10, fontSize: 15, color: 'black'}} numberOfLines={1}>
-                    {rowData.title}
-                  </Text>
+                      <Image
+                        style={{height: 140, width: undefined}}
+                        source={require('../../assets/feed_images/z1.jpg')}
+                        resizeMode="cover"
+                        />
 
-                  <Text style={{ marginTop: 5, fontSize: 13, color: 'gray'}}>
-                    Hamza Namira
-                  </Text>
+                      <Text style={{ marginTop: 10, fontSize: 15, color: 'black'}} numberOfLines={1}>
+                        {item.key}
+                      </Text>
+
+                      <Text style={{ marginTop: 5, fontSize: 13, color: 'gray'}}>
+                        Hamza Namira
+                      </Text>
+
+                    </View>
+
+                  </TouchableHighlight>
+
                 </View>
               );
             }}
@@ -163,11 +264,36 @@ render() {
             ]}
             renderItem={({ item ,index}) => {
               return (
-                <View
-                  style={[styles.item,{backgroundColor:colors[index%colors.length]}]}
-                  >
-                  <Text style={{fontSize: 15, color: 'white', fontWeight: 'bold'}}>{item.key}</Text>
-                </View>
+                /*<View
+                style={[styles.item,{backgroundColor:colors[index%colors.length]}]}
+                >
+                <Text style={{fontSize: 15, color: 'white', fontWeight: 'bold'}}>{item.key}</Text>
+                </View>*/
+
+                <ImageBackground borderRadius={10} source={require('../../assets/feed_images/jazzon.png')} style={[styles.backgroundImage]}>
+
+                  <View style={{backgroundColor:colors[index%colors.length], position: 'absolute',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
+                    borderRadius: 10,
+                    opacity: 0.6}}>
+
+                  </View>
+
+                  <Text style={{fontSize: 15, color: 'white', fontWeight: 'bold', position: 'absolute',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    top: 55,
+                    right: 0,
+                    bottom: 0,
+                    left: 15,}}>{item.key}</Text>
+
+                </ImageBackground>
+
               );
             }}
 
@@ -181,6 +307,21 @@ render() {
 }
 }
 
+const IS_IOS = Platform.OS === 'ios';
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
+
+function wp (percentage) {
+  const value = (percentage * viewportWidth) / 100;
+  return Math.round(value);
+}
+
+const slideHeight = viewportHeight * 0.36;
+const slideWidth = wp(75);
+const itemHorizontalMargin = wp(2);
+
+export const sliderWidth = viewportWidth;
+export const itemWidth = slideWidth + itemHorizontalMargin * 2;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -189,4 +330,19 @@ const styles = StyleSheet.create({
     padding: 0, width: 140, height: 90 , marginLeft: 18, marginRight: 8,  marginBottom: 18, justifyContent: 'center',
     alignItems: 'center', borderRadius: 10
   },
+  backgroundImage: {
+    flex: 1,
+    padding: 0, width: 140, height: 90 , marginLeft: 18, marginRight: 8,  marginBottom: 18,
+    borderRadius: 10
+  },
+  overlay: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    opacity: 0.6
+  }
 });
