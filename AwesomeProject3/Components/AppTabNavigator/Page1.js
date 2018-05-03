@@ -322,7 +322,7 @@ this.init();
 
           <FlatList showsHorizontalScrollIndicator={false} horizontal="horizontal" data={[
               {
-                key: 'Classicals'
+                key: 'Classicalssss'
               }, {
                 key: 'Jazz & Blues'
               }, {
