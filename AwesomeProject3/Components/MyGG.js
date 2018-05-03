@@ -11,7 +11,7 @@ export default class MyGG extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>I'm the MyComponent component</Text>
+        <Text>I'm the MyComponent componentGGG</Text>
       </View>
     );
   }
