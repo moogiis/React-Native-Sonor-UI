@@ -80,7 +80,7 @@ export default class Page2 extends Component {
 
                 </View>
 
-                <ImageBackground borderRadius={10} style={styles.mainimg} source={require('../../assets/feed_images/lamar.jpeg')} resizeMode="cover">
+                <ImageBackground borderRadius={10} style={styles.mainimg} source={require('../../assets/feed_images/humble.jpeg')} resizeMode="cover">
 
                   <View style={styles.imgcontainer}>
 
@@ -133,26 +133,7 @@ export default class Page2 extends Component {
                 <View style={styles.buttoncontainer}>
 
                   <TouchableHighlight style={{
-                      alignItems: 'center'
-                    }} underlayColor="#eeeeee" onPress={() => this.props.navigation.navigate('Comments')}>
-
-                    <View style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        height: 47
-                      }}>
-                      <Icon size={18} name="favorite" color="gray"/>
-                      <Text style={{
-                          fontSize: 14,
-                          color: 'gray',
-                          marginLeft: 8
-                        }}>200K</Text>
-                    </View>
-
-                  </TouchableHighlight>
-
-                  <TouchableHighlight style={{
-                      alignItems: 'center'
+                      alignItems: 'center', paddingRight: 15
                     }} underlayColor="#eeeeee" onPress={() => Alert.alert('Alert Title', 'Comment', [
                       {
                         text: 'Cancel',
@@ -166,7 +147,26 @@ export default class Page2 extends Component {
                     <View style={{
                         flexDirection: 'row',
                         alignItems: 'center',
-                        height: 47
+                        height: 50
+                      }}>
+                      <Icon size={18} name="favorite" color="gray"/>
+                      <Text style={{
+                          fontSize: 14,
+                          color: 'gray',
+                          marginLeft: 8
+                        }}>200K</Text>
+                    </View>
+
+                  </TouchableHighlight>
+
+                  <TouchableHighlight style={{
+                      alignItems: 'center', paddingRight: 15, paddingLeft: 15
+                    }} underlayColor="#eeeeee" onPress={() => this.props.navigation.navigate('Comments')}>
+
+                    <View style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        height: 50
                       }}>
                       <Icon size={18} name="comment" color="gray"/>
                       <Text style={{
@@ -179,7 +179,7 @@ export default class Page2 extends Component {
                   </TouchableHighlight>
 
                   <TouchableHighlight style={{
-                      alignItems: 'center'
+                      alignItems: 'center', paddingLeft: 15
                     }} underlayColor="#eeeeee" onPress={() => Alert.alert('Alert Title', 'Repost', [
                       {
                         text: 'Cancel',
@@ -193,7 +193,7 @@ export default class Page2 extends Component {
                     <View style={{
                         flexDirection: 'row',
                         alignItems: 'center',
-                        height: 47
+                        height: 50
                       }}>
                       <Icon size={18} name="repeat" color="gray"/>
                       <Text style={{

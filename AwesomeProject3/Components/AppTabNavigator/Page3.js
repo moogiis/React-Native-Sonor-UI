@@ -6,12 +6,15 @@ import {
   Text,
   StyleSheet,
   Image,
+  Button
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Sae } from 'react-native-textinput-effects';
 
 import Carousel from 'react-native-snap-carousel';
+
+import Modal from 'react-native-modalbox';
 
 export default class Page3 extends Component {
 
@@ -73,23 +76,17 @@ export default class Page3 extends Component {
     return (
       <View style={styles.container}>
         <Text>Im the MyComponent component</Text>
-        <Sae
-            label={'Email Address'}
+        <Button onPress={() => this.refs.modal1.open()} style={styles.btn} title="Press Me"></Button>
+          <Modal
+            style={[styles.modal, styles.modal1]}
+            ref={"modal1"}
+            swipeToClose={this.state.swipeToClose}
+            onClosed={this.onClose}
+            onOpened={this.onOpen}
+            onClosingState={this.onClosingState}>
+              <Text style={styles.text}>Basic modal</Text>
 
-            iconClass={Icon}
-            iconName={'lock-open'}
-            iconColor={'white'}
-          />
-          <Carousel
-            ref={ (c) => { this._carousel = c; } }
-            data={this.state.videos}
-            renderItem={this._renderItem.bind(this)}
-            onSnapToItem={this.handleSnapToItem.bind(this)}
-            sliderWidth={360}
-            itemWidth={256}
-            layout={'default'}
-            firstItem={0}
-          />
+          </Modal>
       </View>
     );
   }
@@ -104,5 +101,15 @@ const styles = StyleSheet.create({
   container2: {
     width: 256,
   height: 144,
+  },
+  btn: {
+    margin: 10,
+    backgroundColor: "#3B5998",
+    color: "white",
+    padding: 10
+  },
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 });

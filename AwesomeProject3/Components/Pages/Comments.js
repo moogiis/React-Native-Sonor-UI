@@ -16,6 +16,8 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import Button from 'apsl-react-native-button'
+
 export default class Comments extends Component {
   static navigationOptions = {
     title: "Сэтгэгдэл",
@@ -42,7 +44,7 @@ export default class Comments extends Component {
 
                 </View>
 
-                <ImageBackground borderRadius={10} style={styles.mainimg} source={require('../../assets/feed_images/lamar.jpeg')} resizeMode="cover">
+                <ImageBackground borderRadius={10} style={styles.mainimg} source={require('../../assets/feed_images/humble.jpeg')} resizeMode="cover">
 
                   <View style={styles.imgcontainer}>
 
@@ -95,8 +97,16 @@ export default class Comments extends Component {
                     <View style={styles.buttoncontainer}>
 
                       <TouchableHighlight style={{
-                          alignItems: 'center'
-                        }} underlayColor="#eeeeee" onPress={() => this.props.navigation.navigate('Comments')}>
+                          alignItems: 'center', paddingRight: 15
+                        }} underlayColor="#eeeeee" onPress={() => Alert.alert('Alert Title', 'Like', [
+                          {
+                            text: 'Cancel',
+                            onPress: () => console.log('Cancel Pressed!')
+                          }, {
+                            text: 'OK',
+                            onPress: this.onDeleteBTN
+                          }
+                        ], {cancelable: false})}>
 
                         <View style={{
                             flexDirection: 'row',
@@ -114,16 +124,8 @@ export default class Comments extends Component {
                         </TouchableHighlight>
 
                         <TouchableHighlight style={{
-                            alignItems: 'center'
-                          }} underlayColor="#eeeeee" onPress={() => Alert.alert('Alert Title', 'Comment', [
-                            {
-                              text: 'Cancel',
-                              onPress: () => console.log('Cancel Pressed!')
-                            }, {
-                              text: 'OK',
-                              onPress: this.onDeleteBTN
-                            }
-                          ], {cancelable: false})}>
+                            alignItems: 'center', paddingRight: 15, paddingLeft: 15
+                          }} underlayColor="#eeeeee">
 
                           <View style={{
                               flexDirection: 'row',
@@ -141,7 +143,7 @@ export default class Comments extends Component {
                           </TouchableHighlight>
 
                           <TouchableHighlight style={{
-                              alignItems: 'center'
+                              alignItems: 'center', paddingLeft: 15
                             }} underlayColor="#eeeeee" onPress={() => Alert.alert('Alert Title', 'Repost', [
                               {
                                 text: 'Cancel',
@@ -262,150 +264,176 @@ export default class Comments extends Component {
                     <View style={styles.linemain2}/>
 
                     <View style={{flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      paddingHorizontal: 5,
-                      paddingVertical: 3,}}>
+
+                      paddingHorizontal: 10,
+                      alignItems: 'center',
+                      paddingVertical: 4,}}>
 
                       <TextInput
                         multiline={true}
-                        placeholder='Enter description...'
+                        placeholder='Сэтгэгдэлээ бичнэ үү...'
                         underlineColorAndroid={'transparent'}
-                        style={{width: undefined, flex: 1,}}
+                        placeholderStyle={{fontSize: 15, color: 'gray'}}
+                        style={{width: undefined, flex: 1, fontSize: 15}}
                         />
 
-                      <Text style={{
-                          fontSize: 14,
-                          color: 'gray',
-                          marginLeft: 8
-                        }}>43</Text>
+                      <View style={{
+                          backgroundColor: 'white',
+                          borderColor: '#ea494e',
+                          borderWidth: 2,
+                          borderRadius: 20,
+                          height: 40,
+                          width: 40,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexDirection: 'row',
+                        }}>
+
+                        <Icon size={18} name="send" color="#ea494e" style={{textAlign: 'center',}}/>
 
                       </View>
 
+
                     </View>
 
-                  );
-                }
+                  </View>
+
+                );
               }
+            }
 
-              const styles = StyleSheet.create({
-                container: {
-                  flex: 1,
-                  backgroundColor: 'white',
-                  flexDirection: 'column',
-                },
-                items: {
-                  fontSize: 14,
-                  color: 'black',
-                  fontWeight: 'bold'
-                },
+            const styles = StyleSheet.create({
+              container: {
+                flex: 1,
+                backgroundColor: 'white',
+                flexDirection: 'column',
+              },
+              items: {
+                fontSize: 14,
+                color: 'black',
+                fontWeight: 'bold'
+              },
 
-                item3: {
-                  fontSize: 13,
-                  color: 'gray',
-                  marginTop: 7
-                },
+              item3: {
+                fontSize: 13,
+                color: 'gray',
+                marginTop: 7
+              },
 
-                item2: {
-                  padding: 10,
-                  height: 150
+              item2: {
+                padding: 10,
+                height: 150
+              },
+              main: {
+                backgroundColor: 'white',
+                paddingBottom: 0,
+                paddingRight: 15,
+                paddingLeft: 15,
+                paddingTop: 15,
+              },
+              top: {
+                alignItems: 'center',
+                flexDirection: 'row',
+                marginBottom: 10
+              },
+              mainimgusr: {
+                height: 36,
+                width: 36,
+                borderRadius: 18,
+                borderWidth: 1,
+                borderColor: '#ebebeb'
+              },
+              username: {
+                fontSize: 14,
+                color: 'black',
+                marginLeft: 10
+              },
+              maintime: {
+                fontSize: 13,
+                color: 'gray',
+                marginLeft: 'auto'
+              },
+              mainimg: {
+                width: undefined,
+                height: 170,
+                justifyContent: 'flex-end'
+              },
+              imgcontainer: {
+                alignItems: 'center',
+                flexDirection: 'row',
+                paddingLeft: 18,
+                paddingRight: 18,
+                paddingTop: 16,
+                paddingBottom: 16
+              },
+              maintitle: {
+                fontSize: 18,
+                color: '#ea494e',
+                fontWeight: 'bold',
+                textShadowColor: '#eeeeee',
+                textShadowOffset: {
+                  width: 1,
+                  height: 2
                 },
-                main: {
-                  backgroundColor: 'white',
-                  paddingBottom: 0,
-                  paddingRight: 15,
-                  paddingLeft: 15,
-                  paddingTop: 15,
-                },
-                top: {
-                  alignItems: 'center',
-                  flexDirection: 'row',
-                  marginBottom: 10
-                },
-                mainimgusr: {
-                  height: 36,
-                  width: 36,
-                  borderRadius: 18,
-                  borderWidth: 1,
-                  borderColor: '#ebebeb'
-                },
-                username: {
-                  fontSize: 14,
-                  color: 'black',
-                  marginLeft: 10
-                },
-                maintime: {
-                  fontSize: 13,
-                  color: 'gray',
-                  marginLeft: 'auto'
-                },
-                mainimg: {
-                  width: undefined,
-                  height: 170,
-                  justifyContent: 'flex-end'
-                },
-                imgcontainer: {
-                  alignItems: 'center',
-                  flexDirection: 'row',
-                  paddingLeft: 18,
-                  paddingRight: 18,
-                  paddingTop: 16,
-                  paddingBottom: 16
-                },
-                maintitle: {
-                  fontSize: 18,
-                  color: '#ea494e',
-                  fontWeight: 'bold',
-                  textShadowColor: '#eeeeee',
-                  textShadowOffset: {
-                    width: 1,
-                    height: 2
-                  },
-                  textShadowRadius: 4
-                },
-                buttoncontainer: {
+                textShadowRadius: 4
+              },
+              buttoncontainer: {
 
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                },
-                buttoncontainer2: {
-                  height: 18,
-                  marginTop: 8,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
-                },
-                buttoncontainer3: {
-                  height: 60,
-                  paddingRight: 15,
-                  paddingLeft: 15,
-                  paddingBottom: 10,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
-                },
-                linemain: {
-                  height: 1,
-                  backgroundColor: '#ebebeb',
-                  marginTop: 8
-                },
-                linemain2: {
-                  height: 1,
-                  backgroundColor: '#ebebeb',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              },
+              buttoncontainer2: {
+                height: 18,
+                marginTop: 8,
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+              },
+              buttoncontainer3: {
+                height: 60,
+                paddingRight: 15,
+                paddingLeft: 15,
+                paddingBottom: 10,
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+              },
+              linemain: {
+                height: 1,
+                backgroundColor: '#ebebeb',
+                marginTop: 8
+              },
+              linemain2: {
+                height: 1,
+                backgroundColor: '#ebebeb',
 
-                },
-                genrecontainer: {
-                  marginLeft: 'auto',
-                  paddingLeft: 10
-                },
-                genreborder: {
-                  backgroundColor: '#ea494e',
-                  paddingTop: 5,
-                  paddingBottom: 5,
-                  paddingLeft: 8,
-                  paddingRight: 8,
-                  borderRadius: 15
-                },
-                genretext: {
-                  fontSize: 13,
-                  color: 'white'
-                },
-              });
+              },
+              genrecontainer: {
+                marginLeft: 'auto',
+                paddingLeft: 10
+              },
+              genreborder: {
+                backgroundColor: '#ea494e',
+                paddingTop: 5,
+                paddingBottom: 5,
+                paddingLeft: 8,
+                paddingRight: 8,
+                borderRadius: 15
+              },
+              genretext: {
+                fontSize: 13,
+                color: 'white'
+              },
+              buttonStyle8: {
+                backgroundColor: 'white',
+                borderColor: '#ea494e',
+                borderWidth: 2,
+                borderRadius: 20,
+                width: 40,
+                height: 40
+              },
+              textStyle8: {
+                width: 200,
+                fontFamily: 'Avenir Next',
+                color: '#ea494e',
+              },
+            });

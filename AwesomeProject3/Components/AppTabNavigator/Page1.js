@@ -178,7 +178,8 @@ this.init();
   }
 
   render() {
-    return (<ScrollView>
+    return (
+      <ScrollView>
       <View style={styles.container}>
 
         <View style={{
@@ -225,37 +226,31 @@ this.init();
               marginBottom: 15
             }}>Энэ долоон хоногт их тоглогдсон дуунууд</Text>
 
-          <FlatList showsHorizontalScrollIndicator={false} horizontal="horizontal" data={[
+          <FlatList showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            data={[
               {
                 key: 'Dari Ya Alby Dari Ya Alby',
-                "1": require('../../assets/feed_images/z1.jpg')
               }, {
                 key: 'Dari Ya Alby Dari Ya Alby',
-                "2": require('../../assets/feed_images/z1.jpg')
               }, {
                 key: 'Dari Ya Alby Dari Ya Alby',
-                "3": require('../../assets/feed_images/z1.jpg')
               }, {
                 key: 'Dari Ya Alby Dari Ya Alby',
-                "4": require('../../assets/feed_images/z1.jpg')
               }, {
                 key: 'Dari Ya Alby Dari Ya Alby',
-                "5": require('../../assets/feed_images/z1.jpg')
               }, {
                 key: 'Dari Ya Alby Dari Ya Alby',
-                "6": require('../../assets/feed_images/z1.jpg')
               }, {
                 key: 'Dari Ya Alby Dari Ya Alby',
-                "7": require('../../assets/feed_images/z1.jpg')
               }, {
                 key: 'Dari Ya Alby Dari Ya Alby',
-                "8": require('../../assets/feed_images/z1.jpg')
               }, {
                 key: 'Dari Ya Alby Dari Ya Alby',
-                "9": require('../../assets/feed_images/z1.jpg')
               }
-            ]} renderItem={({item, index}) => {
-              return (<View style={{
+            ]}
+            renderItem={({item}) =>
+              <View style={{
                   padding: 0,
                   width: 140,
                   marginLeft: 18,
@@ -299,8 +294,8 @@ this.init();
 
                 </TouchableHighlight>
 
-              </View>);
-            }} keyExtractor={(item, index) => index.toString()}/>
+              </View>
+            } />
 
         </View>
 
@@ -320,7 +315,7 @@ this.init();
               marginTop: 18
             }}>Санал болгох дууны төрөл</Text>
 
-          <FlatList showsHorizontalScrollIndicator={false} horizontal="horizontal" data={[
+          <FlatList showsHorizontalScrollIndicator={false} horizontal={true} data={[
               {
                 key: 'Classicalssss'
               }, {
@@ -377,12 +372,14 @@ this.init();
                   }}>{item.key}</Text>
 
               </ImageBackground>);
-            }}/>
+            }} keyExtractor={(item, index) => index.toString()}/>
 
         </View>
 
+
       </View>
-    </ScrollView>);
+    </ScrollView>
+  );
   }
 }
 
